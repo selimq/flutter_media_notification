@@ -51,32 +51,21 @@ public class NotificationPanel extends Service {
                 .putExtra("play", !isPlaying);
         PendingIntent pendingToggleIntent = PendingIntent.getBroadcast(this, 0, toggleIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         MediaButtonReceiver.handleIntent(mediaSession, toggleIntent);
-
+x
         //TODO(ALI): add media mediaSession Buttons and handle them
-        Intent nextIntent = new Intent(this, NotificationReturnSlot.class)
-                .setAction("next");
-        PendingIntent pendingNextIntent = PendingIntent.getBroadcast(this, 0, nextIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        MediaButtonReceiver.handleIntent(mediaSession, nextIntent);
-
-        Intent prevIntent = new Intent(this, NotificationReturnSlot.class)
-                .setAction("prev");
-        PendingIntent pendingPrevIntent = PendingIntent.getBroadcast(this, 0, prevIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        MediaButtonReceiver.handleIntent(mediaSession, prevIntent);
 
         Intent selectIntent = new Intent(this, NotificationReturnSlot.class)
                 .setAction("select");
         PendingIntent selectPendingIntent = PendingIntent.getBroadcast(this, 0, selectIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-//        MediaButtonReceiver.handleIntent(mediaSession, selectIntent);
+//      
 
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .addAction(R.drawable.baseline_skip_previous_black_48, "prev", pendingPrevIntent)
                 .addAction(iconPlayPause, titlePlayPause, pendingToggleIntent)
-                .addAction(R.drawable.baseline_skip_next_black_48, "next", pendingNextIntent)
                 .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
                         .setShowActionsInCompactView(0, 1,2)
                         .setShowCancelButton(true)
                         .setMediaSession(mediaSession.getSessionToken()))
-                .setSmallIcon(R.drawable.ic_stat_music_note)
+                .setSmallIcon(R.drawable.ic_media_ff)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setVibrate(new long[]{0L})
                 .setPriority(NotificationCompat.PRIORITY_MAX)
@@ -84,7 +73,7 @@ public class NotificationPanel extends Service {
                 .setContentText(author)
                 .setSubText(title)
                 .setContentIntent(selectPendingIntent)
-                .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_stat_music_note))
+                .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_media_ff))
                 .build();
 
         startForeground(NOTIFICATION_ID, notification);
