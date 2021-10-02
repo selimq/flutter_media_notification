@@ -51,8 +51,6 @@ public class NotificationPanel extends Service {
                 .putExtra("play", !isPlaying);
         PendingIntent pendingToggleIntent = PendingIntent.getBroadcast(this, 0, toggleIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         MediaButtonReceiver.handleIntent(mediaSession, toggleIntent);
-x
-        //TODO(ALI): add media mediaSession Buttons and handle them
 
         Intent selectIntent = new Intent(this, NotificationReturnSlot.class)
                 .setAction("select");
