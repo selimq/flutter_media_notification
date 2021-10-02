@@ -34,7 +34,8 @@ public class NotificationPanel extends Service {
         createNotificationChannel();
 
 
-      MediaSessionCompat mediaSession = new MediaSessionCompat(this, MEDIA_SESSION_TAG);
+   
+        MediaSessionCompat mediaSession = new MediaSessionCompat(this, MEDIA_SESSION_TAG);
 
 
         int iconPlayPause = R.drawable.baseline_play_arrow_black_48;
@@ -53,13 +54,25 @@ public class NotificationPanel extends Service {
         MediaButtonReceiver.handleIntent(mediaSession, toggleIntent);
 
         //TODO(ALI): add media mediaSession Buttons and handle them
+        Intent nextIntent = new Intent(this, NotificationReturnSlot.class)
+                .setAction("next");
+        PendingIntent pendingNextIntent = PendingIntent.getBroadcast(this, 0, nextIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        MediaButtonReceiver.handleIntent(mediaSession, nextIntent);
+
+        Intent prevIntent = new Intent(this, NotificationReturnSlot.class)
+                .setAction("prev");
+        PendingIntent pendingPrevIntent = PendingIntent.getBroadcast(this, 0, prevIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        MediaButtonReceiver.handleIntent(mediaSession, prevIntent);
 
         Intent selectIntent = new Intent(this, NotificationReturnSlot.class)
                 .setAction("select");
         PendingIntent selectPendingIntent = PendingIntent.getBroadcast(this, 0, selectIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 //        MediaButtonReceiver.handleIntent(mediaSession, selectIntent);
+
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .addAction(R.drawable.baseline_skip_previous_black_48, "prev", pendingPrevIntent)
                 .addAction(iconPlayPause, titlePlayPause, pendingToggleIntent)
+                .addAction(R.drawable.baseline_skip_next_black_48, "next", pendingNextIntent)
                 .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
                         .setShowActionsInCompactView(0, 1,2)
                         .setShowCancelButton(true)
@@ -74,7 +87,6 @@ public class NotificationPanel extends Service {
                 .setContentIntent(selectPendingIntent)
                 .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_stat_music_note))
                 .build();
-
         startForeground(NOTIFICATION_ID, notification);
         if(!isPlaying) {
             stopForeground(false);
