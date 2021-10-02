@@ -64,7 +64,7 @@ public class NotificationPanel extends Service {
                         .setShowActionsInCompactView(0, 1,2)
                         .setShowCancelButton(true)
                         .setMediaSession(mediaSession.getSessionToken()))
-                .setSmallIcon(R.drawable.ic_media_ff)
+                .setSmallIcon(R.drawable.ic_stat_music_note)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setVibrate(new long[]{0L})
                 .setPriority(NotificationCompat.PRIORITY_MAX)
@@ -72,7 +72,7 @@ public class NotificationPanel extends Service {
                 .setContentText(author)
                 .setSubText(title)
                 .setContentIntent(selectPendingIntent)
-                .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_media_ff))
+                .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_stat_music_note))
                 .build();
 
         startForeground(NOTIFICATION_ID, notification);
