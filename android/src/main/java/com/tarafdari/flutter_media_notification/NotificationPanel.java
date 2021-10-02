@@ -34,7 +34,7 @@ public class NotificationPanel extends Service {
         createNotificationChannel();
 
 
-        MediaSessionCompat mediaSession = new MediaSessionCompat(this, MEDIA_SESSION_TAG);
+      MediaSessionCompat mediaSession = new MediaSessionCompat(this, MEDIA_SESSION_TAG);
 
 
         int iconPlayPause = R.drawable.baseline_play_arrow_black_48;
@@ -49,15 +49,15 @@ public class NotificationPanel extends Service {
                 .putExtra("title",  title)
                 .putExtra("author",  author)
                 .putExtra("play", !isPlaying);
-                
         PendingIntent pendingToggleIntent = PendingIntent.getBroadcast(this, 0, toggleIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         MediaButtonReceiver.handleIntent(mediaSession, toggleIntent);
+
+        //TODO(ALI): add media mediaSession Buttons and handle them
 
         Intent selectIntent = new Intent(this, NotificationReturnSlot.class)
                 .setAction("select");
         PendingIntent selectPendingIntent = PendingIntent.getBroadcast(this, 0, selectIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-//      
-
+//        MediaButtonReceiver.handleIntent(mediaSession, selectIntent);
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .addAction(iconPlayPause, titlePlayPause, pendingToggleIntent)
                 .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
