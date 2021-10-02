@@ -49,6 +49,7 @@ public class NotificationPanel extends Service {
                 .putExtra("title",  title)
                 .putExtra("author",  author)
                 .putExtra("play", !isPlaying);
+                
         PendingIntent pendingToggleIntent = PendingIntent.getBroadcast(this, 0, toggleIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         MediaButtonReceiver.handleIntent(mediaSession, toggleIntent);
 
