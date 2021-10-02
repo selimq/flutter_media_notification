@@ -10,6 +10,12 @@ public class NotificationReturnSlot extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         switch (intent.getAction()) {
+            case "prev":
+                FlutterMediaNotificationPlugin.callEvent("prev");
+                break;
+            case "next":
+                FlutterMediaNotificationPlugin.callEvent("next");
+                break;
             case "toggle":
                 String title = intent.getStringExtra("title");
                 String author = intent.getStringExtra("author");
