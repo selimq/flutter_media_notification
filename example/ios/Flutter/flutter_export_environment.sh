@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/home/falcon/sdk/flutter"
-export "FLUTTER_APPLICATION_PATH=/home/falcon/Projects/myProjects/sound_app/sound_app/media_notf/flutter_media_notification/example"
+export "FLUTTER_ROOT=/Users/selimdogan/development/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/selimdogan/Projects/selim/app/sound_lib/flutter_media_notification/example"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
